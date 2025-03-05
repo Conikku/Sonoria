@@ -55,6 +55,10 @@ export class GetParentProperty extends LogicNode {
         return Vector3.zero as never;
     }
 
+    GetWorldRotation(): CFrame {
+        return this.parent?.CFrame || CFrameZero;
+    }
+
     SetTemporaryParent() {
         if (Selection === undefined) return;
         const selected = Selection.Get();

@@ -6,6 +6,7 @@ import { PropertyType } from "../FieldStates";
 import { LogicNode } from "./LogicNode";
 
 let Selection: Selection | undefined;
+
 if (RunService.IsStudio()) {
     Selection = game.GetService("Selection");
 }

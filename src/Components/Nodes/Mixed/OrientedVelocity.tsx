@@ -1,30 +1,52 @@
-// src/API/Nodes/Mixed/OrientedVelocity.ts
+// API/Components/Nodes/Mixed/OrientatedVelocity.tsx
 
-import { ConnectableNumberField } from "API/Fields/ConnectableNumberField";
-import { ConnectableVector3Field } from "API/Fields/ConnectableVector3Field";
-import type { ParticleData } from "API/ParticleService";
-import { MixedNode } from "./MixedNode";
+import React from "@rbxts/react";
+import { OrientedVelocity as OrientedVelocityAPI } from "API/Nodes/Mixed/OrientedVelocity";
+import ConnectableNumberField from "Components/NodeFields/ConnectableNumberField";
+import ConnectableVector3Field from "Components/NodeFields/ConnectableVector3Field";
+import { AddNode, type NodeData } from "Services/NodesService";
+import Node from "../Node";
 
-export class OrientedVelocity extends MixedNode {
-    static className = "OrientedVelocity";
+export function CreateOrientatedVelocity() {
+    return AddNode(new OrientedVelocityAPI(), (data: NodeData) => {
+        return (
+            <OrientatedVelocity
+                key={data.node.updateOrder === -1 ? `node_${data.node.id}` : `node_${data.node.updateOrder}_${data.node.id}`}
+                data={data}
+            />
+        );
+    });
+}
 
-    nodeFields = {
-        direction: new ConnectableVector3Field(0, 0, 0),
-        speed: new ConnectableNumberField(1),
-        upVector: new ConnectableVector3Field(0, 1, 0),
-    };
+function OrientatedVelocity({ data }: { data: NodeData }) {
+    return (
+        <Node
+            Name="Orientated Velocity"
+            NodeId={data.node.id}
+            NodeAnchorPoint={data.anchorPoint}
+            IsConnectedToSystem={data.node.connectedSystemId !== undefined}
+        >
+            <ConnectableVector3Field
+                NodeId={data.node.id}
+                NodeField={(data.node as OrientedVelocityAPI).nodeFields.direction}
+                NodeFieldName={"direction"}
+                Label="Direction"
+            />
 
-    Run(data: ParticleData) {
-        const direction = this.nodeFields.direction.GetVector3(data);
-        const speed = this.nodeFields.speed.GetNumber(data);
-        
-        if (direction.Magnitude > 0) {
-            const velocity = direction.mul(speed);
-            data.velocityNormal = new Vector3(velocity.X, velocity.Y, velocity.Z);
-        }
-    }
+            <ConnectableNumberField
+                NodeId={data.node.id}
+                NodeField={(data.node as OrientedVelocityAPI).nodeFields.speed}
+                NodeFieldName={"speed"}
+                Label="Speed"
+                AllowNegative={false}
+            />
 
-    GetClassName(): string {
-        return OrientedVelocity.className;
-    }
+            <ConnectableVector3Field
+                NodeId={data.node.id}
+                NodeField={(data.node as OrientedVelocityAPI).nodeFields.upVector}
+                NodeFieldName={"upVector"}
+                Label="Up Vector"
+            />
+        </Node>
+    );
 }

@@ -3,7 +3,7 @@ import { CalculationType1 } from "API/Nodes/FieldStates";
 import { IsAxisX, IsAxisY, IsAxisZ } from "API/Nodes/FieldStatesLib";
 import { Rotation as RotationAPI } from "API/Nodes/Mixed/Rotation";
 import ConnectableNumberField from "Components/NodeFields/ConnectableNumberField";
-import { ConnectableVector2Field } from "Components/NodeFields/ConnectableVector2Field";
+import ConnectableVector3Field from "Components/NodeFields/ConnectableVector3Field";
 import StateField from "Components/NodeFields/StateField";
 import { AddNode, type NodeData } from "Services/NodesService";
 import Node from "../Node";
@@ -60,65 +60,12 @@ function Rotation({ data }: { data: NodeData }) {
             IsConnectedToSystem={data.node.connectedSystemId !== undefined}
         >
             <StateField NodeField={(data.node as RotationAPI).nodeFields.nodeOperationType} />
-            <StateField NodeField={calculationTypeRef.current} />
-            <StateField NodeField={axisTypeRef.current} />
-
-            {IsAxisX(axisType) && isUniform() && (
-                <ConnectableNumberField
-                    NodeId={data.node.id}
-                    NodeField={(data.node as RotationAPI).nodeFields.rotationX}
-                    NodeFieldName={"rotationX"}
-                    AllowNegative={true}
-                    Label="X"
-                />
-            )}
-            {IsAxisX(axisType) && isRandom() && (
-                <ConnectableVector2Field
-                    NodeId={data.node.id}
-                    NodeField={(data.node as RotationAPI).nodeFields.rangeX}
-                    NodeFieldName={"rangeX"}
-                    Label={IsAxisY(axisType) || IsAxisZ(axisType) ? "Range X" : "Range"}
-                    ValueLabels={["Min", "Max"]}
-                />
-            )}
-
-            {IsAxisY(axisType) && isUniform() && (
-                <ConnectableNumberField
-                    NodeId={data.node.id}
-                    NodeField={(data.node as RotationAPI).nodeFields.rotationY}
-                    NodeFieldName={"rotationY"}
-                    AllowNegative={true}
-                    Label="Y"
-                />
-            )}
-            {IsAxisY(axisType) && isRandom() && (
-                <ConnectableVector2Field
-                    NodeId={data.node.id}
-                    NodeField={(data.node as RotationAPI).nodeFields.rangeY}
-                    NodeFieldName={"rangeY"}
-                    Label={IsAxisX(axisType) || IsAxisZ(axisType) ? "Range Y" : "Range"}
-                    ValueLabels={["Min", "Max"]}
-                />
-            )}
-
-            {IsAxisZ(axisType) && isUniform() && (
-                <ConnectableNumberField
-                    NodeId={data.node.id}
-                    NodeField={(data.node as RotationAPI).nodeFields.rotationZ}
-                    NodeFieldName={"rotationZ"}
-                    AllowNegative={true}
-                    Label="Z"
-                />
-            )}
-            {IsAxisZ(axisType) && isRandom() && (
-                <ConnectableVector2Field
-                    NodeId={data.node.id}
-                    NodeField={(data.node as RotationAPI).nodeFields.rangeZ}
-                    NodeFieldName={"rangeZ"}
-                    Label={IsAxisX(axisType) || IsAxisY(axisType) ? "Range Z" : "Range"}
-                    ValueLabels={["Min", "Max"]}
-                />
-            )}
+            <ConnectableVector3Field
+                NodeId={data.node.id}
+                NodeField={(data.node as RotationAPI).nodeFields.Vector3}
+                NodeFieldName={"vector3"}
+                Label={"Vector3"}
+             />
         </Node>
     );
 }

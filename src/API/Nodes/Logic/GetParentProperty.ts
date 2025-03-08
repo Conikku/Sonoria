@@ -1,6 +1,6 @@
 import { RunService } from "@rbxts/services";
 import { StateField } from "API/Fields/StateField";
-import { LowerFirstLetter } from "API/Lib";
+import { CFrameZero, LowerFirstLetter } from "API/Lib";
 import type { Src } from "API/VFXScriptCreator";
 import { PropertyType } from "../FieldStates";
 import { LogicNode } from "./LogicNode";
@@ -53,10 +53,6 @@ export class GetParentProperty extends LogicNode {
         }
 
         return Vector3.zero as never;
-    }
-
-    GetWorldRotation(): CFrame {
-        return this.parent?.CFrame || CFrameZero;
     }
 
     SetTemporaryParent() {

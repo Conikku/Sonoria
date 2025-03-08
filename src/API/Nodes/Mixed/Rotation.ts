@@ -6,6 +6,9 @@ import type { ParticleData } from "API/ParticleService";
 import { AxisType, CalculationType1, NodeOperationType } from "../FieldStates";
 import { IsAxisX, IsAxisY, IsAxisZ } from "../FieldStatesLib";
 import { MixedNode } from "./MixedNode";
+import { ConnectableVector3Field } from "API/Fields/ConnectableVector3Field";
+import { Vector3Field } from "Components/NodeFields/Vector3Field";
+import { number } from "@rbxts/react/src/prop-types";
 
 export class Rotation extends MixedNode {
     static className = "Rotation";
@@ -17,28 +20,51 @@ export class Rotation extends MixedNode {
             CalculationType1.RandomConncted,
         ]),
         axisType: new StateField(AxisType, AxisType.XYZ),
-        rotationX: new ConnectableNumberField(0),
-        rotationY: new ConnectableNumberField(0),
-        rotationZ: new ConnectableNumberField(0),
+        Vector3: new ConnectableVector3Field(0,0,0),
         rangeX: new ConnectableVector2Field(0, 0),
         rangeY: new ConnectableVector2Field(0, 0),
         rangeZ: new ConnectableVector2Field(0, 0),
     };
 
-    storedValuesX = new Map<number, number>();
-    storedValuesY = new Map<number, number>();
-    storedValuesZ = new Map<number, number>();
+    storedValueVectorX = new Map<number, number>();
+    storedValueVectorY = new Map<number, number>();
+    storedValueVectorZ = new Map<number, number>();
+    
 
-    GetRotation(calculationType: string, data: ParticleData, rotationField: ConnectableNumberField, storedValues: Map<number, number>) {
-        if (calculationType === CalculationType1.Uniform) return rotationField.GetNumber(data);
-
+    GetRotation(calculationType: string, data: ParticleData, rotationField: ConnectableVector3Field, storedValues: Map<number, number>, riety: string) {
+        if (calculationType === CalculationType1.Uniform) {
+            const da = rotationField.GetSimpleVector3(data);
+            if (riety == "x") {
+                return da.x
+            }
+            else if (riety == "y") {
+                return da.y
+            }
+            else {
+                return da.z
+            }
+        }
         const storedRotation = storedValues.get(data.particleId);
         if (storedRotation !== undefined) return storedRotation;
-
-        const range = this.nodeFields.rangeX.GetSimpleVector2(data);
-        const rotation = RoundDecimal(Rand.NextNumber(range.x, range.y), 0.01);
-        storedValues.set(data.particleId, rotation);
-        return rotation;
+        
+        if (riety == "x") {
+            const range = this.nodeFields.rangeX.GetSimpleVector2(data);
+            const rotation = RoundDecimal(Rand.NextNumber(range.x, range.y), 0.01);
+            storedValues.set(data.particleId, rotation);
+            return rotation;
+        }
+        else if (riety == "y") {
+            const range = this.nodeFields.rangeY.GetSimpleVector2(data);
+            const rotation = RoundDecimal(Rand.NextNumber(range.x, range.y), 0.01);
+            storedValues.set(data.particleId, rotation);
+            return rotation;
+        }
+        else {
+            const range = this.nodeFields.rangeZ.GetSimpleVector2(data);
+            const rotation = RoundDecimal(Rand.NextNumber(range.x, range.y), 0.01);
+            storedValues.set(data.particleId, rotation);
+            return rotation;
+        }
     }
 
     Run(data: ParticleData, dt = 1) {
@@ -46,19 +72,12 @@ export class Rotation extends MixedNode {
         const calculationType = this.nodeFields.calculationType.GetState();
         const axisType = this.nodeFields.axisType.GetState();
 
-        let [x, y, z] = [0, 0, 0];
-
-        if (IsAxisX(axisType)) {
-            x = this.GetRotation(calculationType, data, this.nodeFields.rotationX, this.storedValuesX);
-        }
-
-        if (IsAxisY(axisType)) {
-            y = this.GetRotation(calculationType, data, this.nodeFields.rotationY, this.storedValuesY);
-        }
-
-        if (IsAxisZ(axisType)) {
-            z = this.GetRotation(calculationType, data, this.nodeFields.rotationZ, this.storedValuesZ);
-        }
+        let [x,y,z] = [0, 0, 0];
+        const val = this.nodeFields.Vector3.GetVector3(data)
+        
+        x = this.GetRotation(calculationType, data, this.nodeFields.Vector3, this.storedValueVectorX, "x")
+        y = this.GetRotation(calculationType, data, this.nodeFields.Vector3, this.storedValueVectorX, "y")
+        z = this.GetRotation(calculationType, data, this.nodeFields.Vector3, this.storedValueVectorX, "z")
 
         if (nodeOperationType === NodeOperationType.Set) {
             data.rotation = CFrame.Angles(math.rad(x), math.rad(y), math.rad(z));

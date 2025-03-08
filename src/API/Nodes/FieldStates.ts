@@ -20,6 +20,7 @@ export const AxisType = {
     XZ: "XZ",
     YZ: "YZ",
     XYZ: "XYZ",
+    Vector3: "Vector3",
 };
 
 export const MathOperationType = {

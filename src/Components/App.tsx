@@ -24,7 +24,7 @@ import { NodeSelection } from "./Selection/NodeSelection";
 // yes it's bad architecture (the way it handles rerenders) but too late to change :p
 
 export function App() {
-    const [widgetSize, setWidgetSize] = useState(GetWindow(Windows.Lumina).AbsoluteSize);
+    const [widgetSize, setWidgetSize] = useState(GetWindow(Windows.Sonoria).AbsoluteSize);
     const [zoomScale, setZoomScale] = useState(1);
     const [nodeSelectionPosition, setNodeSelectionPosition] = useState(undefined as UDim2 | undefined);
     const [_, setForceRender] = useState(0);
@@ -36,7 +36,7 @@ export function App() {
 
     const startMoveCanvas = () => {
         const mousePositionVec2 = GetMousePosition();
-        const widgetSize = GetWindow(Windows.Lumina).AbsoluteSize.mul(0.5);
+        const widgetSize = GetWindow(Windows.Sonoria).AbsoluteSize.mul(0.5);
 
         const mousePosition = UDim2.fromOffset(mousePositionVec2.X, mousePositionVec2.Y);
         const mouseOffset = mousePosition.sub(canvasDataRef.current.Position).add(UDim2.fromOffset(widgetSize.X, widgetSize.Y));

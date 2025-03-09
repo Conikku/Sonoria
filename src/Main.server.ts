@@ -8,7 +8,7 @@ import { InitializeColorPicker } from "Components/Windows/Pickers.tsx/ColorPicke
 import { InitializeColorRamp } from "Components/Windows/Ramps/ColorRamp";
 import { InitUI } from "UIHandler";
 
-const toolbar = plugin.CreateToolbar("Lumina 0.2.1");
+const toolbar = plugin.CreateToolbar("Sonoria 0.2.1");
 
 // i guess I'll try to follow this versioning
 // MAJOR.MINOR.PATCH
@@ -16,9 +16,9 @@ const toolbar = plugin.CreateToolbar("Lumina 0.2.1");
 // MINOR version increments denote backward-compatible additions.
 // PATCH version increments represent backward-compatible bug fixes.
 
-const mainButton = toolbar.CreateButton("Lumina", "Opens VFX Graph", "rbxassetid://17315034818"); // Border 17315079935 ; White 17315034818
+const mainButton = toolbar.CreateButton("Sonoria", "Opens VFX Graph", "rbxassetid://17315034818"); // Border 17315079935 ; White 17315034818
 
-const window = GetWindow(Windows.Lumina);
+const window = GetWindow(Windows.Sonoria);
 window.ZIndexBehavior = Enum.ZIndexBehavior.Sibling; //--> why tf does this make the background images disappear near corners
 
 mainButton.Click.Connect(() => {

@@ -1,10 +1,10 @@
 export enum Windows {
-    Lumina = "Lumina",
-    ValueGraph = "Lumina Value Graph",
-    ColorPicker = "Lumina Color Picker",
-    ColorRamp = "Lumina Color Ramp",
-    RequestUpdate = "Lumina Update Checker",
-    UpdateLog = "Lumina Update Log",
+    Sonoria = "Sonoria",
+    ValueGraph = "Sonoria Value Graph",
+    ColorPicker = "Sonoria Color Picker",
+    ColorRamp = "Sonoria Color Ramp",
+    RequestUpdate = "Sonoria Update Checker",
+    UpdateLog = "Sonoria Update Log",
 }
 
 interface Window {
@@ -13,7 +13,7 @@ interface Window {
 }
 
 const windows: { [key in Windows]: Window } = {
-    [Windows.Lumina]: {
+    [Windows.Sonoria]: {
         Widget: undefined as DockWidgetPluginGui | undefined,
         Info: new DockWidgetPluginGuiInfo(Enum.InitialDockState.Float, false, false, 800, 600, 200, 150),
     },
@@ -43,7 +43,7 @@ export function InitializeWindows(plugin: Plugin) {
     for (const [key, value] of pairs(windows)) {
         const widget = plugin.CreateDockWidgetPluginGui(key, value.Info);
         widget.Name = key;
-        widget.Title = key;
+        //widget.Title = key;
         widget.Enabled = false;
 
         windows[key].Widget = widget;

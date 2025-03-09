@@ -1,11 +1,12 @@
 import { ConnectableNumberField } from "API/Fields/ConnectableNumberField";
-import { ConnectableVector2Field } from "API/Fields/ConnectableVector2Field";
+import { ConnectableVector3Field } from "API/Fields/ConnectableVector3Field";
 import { StateField } from "API/Fields/StateField";
 import { Rand, RoundDecimal } from "API/Lib";
 import type { ParticleData } from "API/ParticleService";
 import { AxisType, CalculationType1, NodeOperationType } from "../FieldStates";
 import { IsAxisX, IsAxisY, IsAxisZ } from "../FieldStatesLib";
 import { MixedNode } from "./MixedNode";
+import { node } from "@rbxts/react/src/prop-types";
 
 export class Velocity extends MixedNode {
     static className = "Velocity";
@@ -17,34 +18,21 @@ export class Velocity extends MixedNode {
             CalculationType1.RandomConncted,
         ]),
         axisType: new StateField(AxisType, AxisType.XYZ),
-        velocityX: new ConnectableNumberField(0),
-        velocityY: new ConnectableNumberField(0),
-        velocityZ: new ConnectableNumberField(0),
-        rangeX: new ConnectableVector2Field(0, 0),
-        rangeY: new ConnectableVector2Field(0, 0),
-        rangeZ: new ConnectableVector2Field(0, 0),
+        velocity: new ConnectableVector3Field(0, 0, 0)
     };
 
-    storedValuesX = new Map<number, number>();
-    storedValuesY = new Map<number, number>();
-    storedValuesZ = new Map<number, number>();
-
     private GetVelocity(
-        calculationType: string,
         data: ParticleData,
-        numberField: ConnectableNumberField,
-        rangeField: ConnectableVector2Field,
-        storedValues: Map<number, number>,
+        vectorField: ConnectableVector3Field,
+        val: string,
     ) {
-        if (calculationType === CalculationType1.Uniform) return numberField.GetNumber(data);
-
-        const storedVelocity = storedValues.get(data.particleId);
-        if (storedVelocity !== undefined) return storedVelocity;
-
-        const range = rangeField.GetSimpleVector2(data);
-        const velocity = RoundDecimal(Rand.NextNumber(range.x, range.y), 0.01);
-        storedValues.set(data.particleId, velocity);
-        return velocity;
+        const vec = vectorField.GetSimpleVector3(data)
+        if (val === "x") 
+            return vec.x;
+        else if (val === "y")
+            return vec.y;
+        else
+            return vec.z;
     }
 
     Run(data: ParticleData, dt: number) {
@@ -53,18 +41,9 @@ export class Velocity extends MixedNode {
         const axisType = this.nodeFields.axisType.GetState();
 
         let [x, y, z] = [0, 0, 0];
-
-        if (IsAxisX(axisType)) {
-            x = this.GetVelocity(calculationType, data, this.nodeFields.velocityX, this.nodeFields.rangeX, this.storedValuesX);
-        }
-
-        if (IsAxisY(axisType)) {
-            y = this.GetVelocity(calculationType, data, this.nodeFields.velocityY, this.nodeFields.rangeY, this.storedValuesY);
-        }
-
-        if (IsAxisZ(axisType)) {
-            z = this.GetVelocity(calculationType, data, this.nodeFields.velocityZ, this.nodeFields.rangeZ, this.storedValuesZ);
-        }
+        x = this.GetVelocity(data, this.nodeFields.velocity, "x")
+        y = this.GetVelocity(data, this.nodeFields.velocity, "y")
+        z = this.GetVelocity(data, this.nodeFields.velocity, "z")
 
         if (nodeOperationType === NodeOperationType.Set) {
             data.velocityNormal = new Vector3(x, y, z);

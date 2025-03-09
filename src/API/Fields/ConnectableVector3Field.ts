@@ -22,6 +22,10 @@ export class ConnectableVector3Field extends NodeField {
         this.vector3Field = new Vector3Field(x, y, z);
     }
 
+    IsA(arg: string): boolean {
+        return arg === "ConnectableVector3Field"
+    }
+
     GetSimpleVector3(data: ParticleData): SimpleVector3 {
         if (this.connectedNodeVector3 !== undefined) {
             const vec3 = this.connectedNodeVector3.Calculate(data) as Vector3;
@@ -35,7 +39,7 @@ export class ConnectableVector3Field extends NodeField {
         return { x, y, z };
     }
 
-    GetVector3(data: ParticleData) {
+    GetVector3(data: ParticleData): Vector3 {
         if (this.connectedNodeVector3 !== undefined) return this.connectedNodeVector3.Calculate(data) as Vector3;
 
         const x = this.GetX(data);

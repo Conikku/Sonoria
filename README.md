@@ -1,4 +1,6 @@
-# Lumina
+# Sonoria
+
+# THIS IS VERY WIP DO NOT USE YET
 
 Compared to other engines such as Unity and Unreal, vfx creation in roblox is pretty limited, having only beams and an image based particle emitter. Everything else to do with VFX must be manually scripted.
 <br><br>
@@ -9,8 +11,8 @@ The aim of this project is to improve vfx creation in roblox by making a much mo
 <br/><br/>
 
 ## Links
-- [DevForum Post](https://devforum.roblox.com/t/lumina-a-custom-particle-system/2963557)<br/>
-- [Documentation](https://mqxsyy.github.io/LuminaDocs/)
+- [DevForum Post](https://devforum.roblox.com/t/Sonoria-a-custom-particle-system/2963557)<br/>
+- [Documentation](https://mqxsyy.github.io/SonoriaDocs/)
 - [Trello](https://trello.com/b/HdIHbE2Q/main)
 - [Discord](https://discord.gg/RwkrWuh6Bd)
 <br/>

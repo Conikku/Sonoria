@@ -3,7 +3,7 @@ import { CalculationType1 } from "API/Nodes/FieldStates";
 import { IsAxisX, IsAxisY, IsAxisZ } from "API/Nodes/FieldStatesLib";
 import { Velocity as VelocityAPI } from "API/Nodes/Mixed/Velocity";
 import ConnectableNumberField from "Components/NodeFields/ConnectableNumberField";
-import { ConnectableVector2Field } from "Components/NodeFields/ConnectableVector2Field";
+import ConnectableVector3Field from "Components/NodeFields/ConnectableVector3Field";
 import StateField from "Components/NodeFields/StateField";
 import { AddNode, type NodeData } from "Services/NodesService";
 import Node from "../Node";
@@ -60,65 +60,12 @@ function Velocity({ data }: { data: NodeData }) {
             IsConnectedToSystem={data.node.connectedSystemId !== undefined}
         >
             <StateField NodeField={(data.node as VelocityAPI).nodeFields.nodeOperationType} />
-            <StateField NodeField={calculationTypeRef.current} />
-            <StateField NodeField={axisTypeRef.current} />
-
-            {IsAxisX(axisType) && isUniform() && (
-                <ConnectableNumberField
-                    NodeId={data.node.id}
-                    NodeField={(data.node as VelocityAPI).nodeFields.velocityX}
-                    NodeFieldName={"velocityX"}
-                    Label="X"
-                    AllowNegative={true}
-                />
-            )}
-            {IsAxisX(axisType) && isRandom() && (
-                <ConnectableVector2Field
-                    NodeId={data.node.id}
-                    NodeField={(data.node as VelocityAPI).nodeFields.rangeX}
-                    NodeFieldName={"rangeX"}
-                    Label={IsAxisY(axisType) || IsAxisZ(axisType) ? "Range X" : "Range"}
-                    ValueLabels={["Min", "Max"]}
-                />
-            )}
-
-            {IsAxisY(axisType) && isUniform() && (
-                <ConnectableNumberField
-                    NodeId={data.node.id}
-                    NodeField={(data.node as VelocityAPI).nodeFields.velocityY}
-                    NodeFieldName={"velocityY"}
-                    Label="Y"
-                    AllowNegative={true}
-                />
-            )}
-            {IsAxisY(axisType) && isRandom() && (
-                <ConnectableVector2Field
-                    NodeId={data.node.id}
-                    NodeField={(data.node as VelocityAPI).nodeFields.rangeY}
-                    NodeFieldName={"rangeY"}
-                    Label={IsAxisX(axisType) || IsAxisZ(axisType) ? "Range Y" : "Range"}
-                    ValueLabels={["Min", "Max"]}
-                />
-            )}
-
-            {IsAxisZ(axisType) && isUniform() && (
-                <ConnectableNumberField
-                    NodeId={data.node.id}
-                    NodeField={(data.node as VelocityAPI).nodeFields.velocityZ}
-                    NodeFieldName={"velocityZ"}
-                    Label="Z"
-                    AllowNegative={true}
-                />
-            )}
-            {IsAxisZ(axisType) && isRandom() && (
-                <ConnectableVector2Field
-                    NodeId={data.node.id}
-                    NodeField={(data.node as VelocityAPI).nodeFields.rangeZ}
-                    NodeFieldName={"rangeZ"}
-                    Label={IsAxisX(axisType) || IsAxisY(axisType) ? "Range Z" : "Range"}
-                    ValueLabels={["Min", "Max"]}
-                />
-            )}
+            <ConnectableVector3Field
+                NodeId={data.node.id}
+                NodeField={(data.node as VelocityAPI).nodeFields.velocity}
+                NodeFieldName={"vector3"}
+                Label={"Vector3"}
+             />
         </Node>
     );
 }

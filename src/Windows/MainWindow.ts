@@ -4,13 +4,13 @@ import { GetWindow, Windows } from "./WindowSevice";
 
 export const WidgetSizeChanged = new Event<[Vector2]>();
 
-const window = GetWindow(Windows.Lumina);
+const window = GetWindow(Windows.Sonoria);
 window.GetPropertyChangedSignal("AbsoluteSize").Connect(() => {
     WidgetSizeChanged.Fire(window.AbsoluteSize);
 });
 
 export function GetMousePosition(): Vector2 {
-    return GetWindow(Windows.Lumina).GetRelativeMousePosition();
+    return GetWindow(Windows.Sonoria).GetRelativeMousePosition();
 }
 
 export function GetMousePositionOnCanvas(): Vector2 {

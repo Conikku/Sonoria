@@ -27,7 +27,7 @@ export default function ShowUpdateLog() {
                     Size={UDim2.fromScale(1, 0)}
                     TextXAlignment="Center"
                     TextWrapped={true}
-                    Text="Lumina Update 0.2.1"
+                    Text="Sonoria Update 0.2.1"
                     FontWeight={Enum.FontWeight.ExtraBold}
                     TextSize={40}
                     TextYAlignment="Bottom"

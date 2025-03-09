@@ -17,6 +17,10 @@ export class ConnectableNumberField extends NodeField {
         this.numberField = new NumberField(number);
     }
 
+    IsA(arg: string): boolean {
+        return arg === "ConnectableNumberField"
+    }
+
     GetNumberAsText = () => {
         return tostring(this.numberField.GetNumber());
     };

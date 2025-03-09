@@ -20,7 +20,7 @@ export default function RequestUpdate() {
                     Size={UDim2.fromScale(1, 0)}
                     TextXAlignment="Center"
                     TextWrapped={true}
-                    Text="New update available for Lumina. Please go to 'Manage Plugins' and update Lumina."
+                    Text="New update available for Sonoria. Please go to 'Manage Plugins' and update Sonoria."
                     TextSize={20}
                     TextYAlignment="Bottom"
                 />

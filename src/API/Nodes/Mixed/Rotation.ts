@@ -34,10 +34,10 @@ export class Rotation extends MixedNode {
     GetRotation(calculationType: string, data: ParticleData, rotationField: ConnectableVector3Field, storedValues: Map<number, number>, riety: string) {
         if (calculationType === CalculationType1.Uniform) {
             const da = rotationField.GetSimpleVector3(data);
-            if (riety == "x") {
+            if (riety === "x") {
                 return da.x
             }
-            else if (riety == "y") {
+            else if (riety === "y") {
                 return da.y
             }
             else {
@@ -47,13 +47,13 @@ export class Rotation extends MixedNode {
         const storedRotation = storedValues.get(data.particleId);
         if (storedRotation !== undefined) return storedRotation;
         
-        if (riety == "x") {
+        if (riety === "x") {
             const range = this.nodeFields.rangeX.GetSimpleVector2(data);
             const rotation = RoundDecimal(Rand.NextNumber(range.x, range.y), 0.01);
             storedValues.set(data.particleId, rotation);
             return rotation;
         }
-        else if (riety == "y") {
+        else if (riety === "y") {
             const range = this.nodeFields.rangeY.GetSimpleVector2(data);
             const rotation = RoundDecimal(Rand.NextNumber(range.x, range.y), 0.01);
             storedValues.set(data.particleId, rotation);

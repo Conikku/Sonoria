@@ -23,7 +23,7 @@ export class ConnectableVector3Field extends NodeField {
     }
 
     IsA(arg: string): boolean {
-        return arg == "ConnectableVector3Field"
+        return arg === "ConnectableVector3Field"
     }
 
     GetSimpleVector3(data: ParticleData): SimpleVector3 {

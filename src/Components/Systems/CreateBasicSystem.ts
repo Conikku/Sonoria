@@ -33,7 +33,7 @@ export function CreateBasicSystem() {
 
         const velocity = CreateVelocity();
         (velocity.data.node as Velocity).nodeFields.axisType.SetState(AxisType.Y);
-        (velocity.data.node as Velocity).nodeFields.velocityY.SetNumber(5);
+        (velocity.data.node as Velocity).nodeFields.velocity.SetVector3(0, 5, 0);
         velocity.elementLoaded.Connect(() => {
             (systemData.addToNodeGroup[NodeGroups.Initialize] as (id: number) => void)(velocity.data.node.id);
         });

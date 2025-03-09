@@ -36,9 +36,7 @@ export function CreateBurstSystem() {
 
         const velocity = CreateVelocity();
         (velocity.data.node as Velocity).nodeFields.calculationType.SetState(CalculationType1.Random);
-        (velocity.data.node as Velocity).nodeFields.rangeX.SetVector2(-5, 5);
-        (velocity.data.node as Velocity).nodeFields.rangeY.SetVector2(-5, 5);
-        (velocity.data.node as Velocity).nodeFields.rangeZ.SetVector2(-5, 5);
+        (velocity.data.node as Velocity).nodeFields.velocity.SetVector3(-4, 2, 3);
         velocity.elementLoaded.Connect(() => {
             (systemData.addToNodeGroup[NodeGroups.Initialize] as (id: number) => void)(velocity.data.node.id);
         });

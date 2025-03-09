@@ -11,7 +11,7 @@ import type { UpdateNode } from "./Nodes/Update/UpdateNode";
 
 if (!RunService.IsStudio()) {
     print(
-        "This game utilizes a free custom particle system and plugin called 'Lumina' to easily create visual effects. Plugin can be found in the toolbox or creator store for absolutely FREE.",
+        "This game utilizes a free custom particle system and plugin called 'Sonoria' to easily create visual effects. Plugin can be found in the toolbox or creator store for absolutely FREE.",
     );
 }
 

@@ -77,9 +77,7 @@ export function CreateFlameSystem() {
 
         const velocity = CreateVelocity();
         (velocity.data.node as Velocity).nodeFields.calculationType.SetState(CalculationType1.Random);
-        (velocity.data.node as Velocity).nodeFields.rangeX.SetVector2(-0.5, 0.5);
-        (velocity.data.node as Velocity).nodeFields.rangeY.SetVector2(10, 15);
-        (velocity.data.node as Velocity).nodeFields.rangeZ.SetVector2(-0.5, 0.5);
+        (velocity.data.node as Velocity).nodeFields.velocity.SetVector3(-0.3, 13, 0.3);
         velocity.elementLoaded.Connect(() => {
             (flameSystemData.addToNodeGroup[NodeGroups.Initialize] as (id: number) => void)(velocity.data.node.id);
         });
@@ -172,9 +170,7 @@ export function CreateFlameSystem() {
 
         const velocity = CreateVelocity();
         (velocity.data.node as Velocity).nodeFields.calculationType.SetState(CalculationType1.Random);
-        (velocity.data.node as Velocity).nodeFields.rangeX.SetVector2(-0.4, 0.4);
-        (velocity.data.node as Velocity).nodeFields.rangeY.SetVector2(15, 20);
-        (velocity.data.node as Velocity).nodeFields.rangeZ.SetVector2(-0.4, 0.4);
+        (velocity.data.node as Velocity).nodeFields.velocity.SetVector3(0.4, 17, -0.2);
         velocity.elementLoaded.Connect(() => {
             (smokeSystemData.addToNodeGroup[NodeGroups.Initialize] as (id: number) => void)(velocity.data.node.id);
         });

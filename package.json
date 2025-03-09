@@ -1,7 +1,7 @@
 {
 	"description": "",
 	"scripts": {
-		"build": "rbxtsc build && rojo build --plugin Lumina.rbxmx",
+		"build": "rbxtsc build && rojo build --plugin Sonoria.rbxmx",
 		"lint": "npx @biomejs/biome lint ./src",
 		"format": "npx @biomejs/biome format ./src"
 	},
@@ -9,7 +9,7 @@
 		"@biomejs/biome": "1.7.3",
 		"@rbxts/compiler-types": "^2.2.0-types.0",
 		"@rbxts/types": "^1.0.774",
-		"roblox-ts": "^2.3.0-dev-3a89c93",
+		"roblox-ts": "^3.0.0",
 		"typescript": "^5.3.3"
 	},
 	"dependencies": {

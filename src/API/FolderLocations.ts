@@ -1,10 +1,10 @@
 import { RunService, ServerStorage, Workspace } from "@rbxts/services";
 
 export function GetLiveParticlesFolder(): Folder {
-    let liveParticlesFolder = Workspace.FindFirstChild("Lumina Particles");
+    let liveParticlesFolder = Workspace.FindFirstChild("Sonoria Particles");
     if (liveParticlesFolder === undefined) {
         liveParticlesFolder = new Instance("Folder");
-        liveParticlesFolder.Name = "Lumina Particles";
+        liveParticlesFolder.Name = "Sonoria Particles";
         liveParticlesFolder.Parent = Workspace;
     }
 
@@ -58,10 +58,10 @@ export function GetMeshParticlesFolder(): Folder {
 }
 
 export function GetExportsFolder(): Folder {
-    let exportsFolder = ServerStorage.FindFirstChild("Lumina Exports");
+    let exportsFolder = ServerStorage.FindFirstChild("Sonoria Exports");
     if (exportsFolder === undefined) {
         exportsFolder = new Instance("Folder");
-        exportsFolder.Name = "Lumina Exports";
+        exportsFolder.Name = "Sonoria Exports";
         exportsFolder.Parent = ServerStorage;
     }
 
@@ -69,10 +69,10 @@ export function GetExportsFolder(): Folder {
 }
 
 export function GetSavesFolder(): Folder {
-    let savesFolder = ServerStorage.FindFirstChild("Lumina Saves");
+    let savesFolder = ServerStorage.FindFirstChild("Sonoria Saves");
     if (savesFolder === undefined) {
         savesFolder = new Instance("Folder");
-        savesFolder.Name = "Lumina Saves";
+        savesFolder.Name = "Sonoria Saves";
         savesFolder.Parent = ServerStorage;
     }
 

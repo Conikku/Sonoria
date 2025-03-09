@@ -18,7 +18,7 @@ export class ConnectableNumberField extends NodeField {
     }
 
     IsA(arg: string): boolean {
-        return arg == "ConnectableNumberField"
+        return arg === "ConnectableNumberField"
     }
 
     GetNumberAsText = () => {

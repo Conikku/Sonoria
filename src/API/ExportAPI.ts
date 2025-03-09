@@ -3,11 +3,11 @@ import { ReplicatedStorage } from "@rbxts/services";
 export const API_VERSION = 102;
 
 function GetAPIFolder() {
-    let APIFolder = ReplicatedStorage.FindFirstChild("Lumina_API");
+    let APIFolder = ReplicatedStorage.FindFirstChild("Sonoria_API");
     if (APIFolder !== undefined) return APIFolder;
 
     APIFolder = new Instance("Folder");
-    APIFolder.Name = "Lumina_API";
+    APIFolder.Name = "Sonoria_API";
     APIFolder.Parent = ReplicatedStorage;
     return APIFolder;
 }

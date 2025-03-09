@@ -48,8 +48,8 @@ function CreateScript(name: string, nodeSystem: NodeSystem) {
     src.value += "local VFXScript = {}\n\n";
 
     src.value += 'local ReplicatedStorage = game:GetService("ReplicatedStorage")\n';
-    src.value += "local APIFolder = ReplicatedStorage.Lumina_API.API\n";
-    src.value += "local TS = require(ReplicatedStorage.Lumina_API.include.RuntimeLib)\n\n";
+    src.value += "local APIFolder = ReplicatedStorage.Sonoria_API.API\n";
+    src.value += "local TS = require(ReplicatedStorage.Sonoria_API.include.RuntimeLib)\n\n";
 
     src.value += 'local NodeSystem = TS.import(script, APIFolder, "NodeSystem").NodeSystem\n';
     src.value += "local nodeSystem = NodeSystem.new()\n\n";

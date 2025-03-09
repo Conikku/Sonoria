@@ -5,7 +5,7 @@
 		"$className": "DataModel",
 		"ServerScriptService": {
 			"$className": "ServerScriptService",
-			"Lumina": {
+			"Sonoria": {
 				"$path": "./default.project.json"
 			}
 		}

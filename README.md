@@ -1,4 +1,4 @@
-# Lumina
+# Sonoria
 
 # THIS IS VERY WIP DO NOT USE YET
 
@@ -11,8 +11,8 @@ The aim of this project is to improve vfx creation in roblox by making a much mo
 <br/><br/>
 
 ## Links
-- [DevForum Post](https://devforum.roblox.com/t/lumina-a-custom-particle-system/2963557)<br/>
-- [Documentation](https://mqxsyy.github.io/LuminaDocs/)
+- [DevForum Post](https://devforum.roblox.com/t/Sonoria-a-custom-particle-system/2963557)<br/>
+- [Documentation](https://mqxsyy.github.io/SonoriaDocs/)
 - [Trello](https://trello.com/b/HdIHbE2Q/main)
 - [Discord](https://discord.gg/RwkrWuh6Bd)
 <br/>

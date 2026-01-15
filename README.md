@@ -1,5 +1,7 @@
 # Sonoria
 
+# UPDATE 1/15/2026
+I can't make this private and I don't want to delete this as im unsure if i'll ever come back to this, as such do not use this, I left this in a very unfinished state
 # THIS IS VERY WIP DO NOT USE YET
 
 Compared to other engines such as Unity and Unreal, vfx creation in roblox is pretty limited, having only beams and an image based particle emitter. Everything else to do with VFX must be manually scripted.

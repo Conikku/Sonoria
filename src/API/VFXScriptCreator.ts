@@ -1,4 +1,5 @@
 import { GetAllSystems } from "Services/NodeSystemService";
+import { Functions } from "./VFXScriptCreatorStaticGeneratedAPI";
 import type { NodeSystem } from "./NodeSystem";
 import type { RenderNode } from "./Nodes/Render/RenderNode";
 import type { SpawnNode } from "./Nodes/Spawn/SpawnNode";
@@ -70,13 +71,10 @@ function CreateScript(name: string, nodeSystem: NodeSystem) {
     (nodeSystem.renderNode as RenderNode).GetAutoGenerationCode(src);
     src.value += "\n\n";
 
-    src.value += "function VFXScript.Start()\n";
-    src.value += "    nodeSystem:Run()\n";
-    src.value += "end\n\n";
-
-    src.value += "function VFXScript.Stop()\n";
-    src.value += "    nodeSystem:Stop()\n";
-    src.value += "end\n\n";
+    for (const [i, v] of ipairs(Functions)) {
+        src.value += v.join("\n")
+        src.value += "\n"
+    }
 
     src.value += "return VFXScript";
 
